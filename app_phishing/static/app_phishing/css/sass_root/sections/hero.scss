@@ -1,0 +1,106 @@
+/*-----------------------
+# HERO
+------------------------*/
+#hero {
+    position: relative;
+
+}
+
+
+.pbc-bg-cover {
+    background: url("../img/hero-bg.jpg") var(--pbc-mint-green);
+    background-size: cover;
+    z-index: -1;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+
+.hero-img:before {
+    content: '';
+    background-color: transparent;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    background-image: -moz-linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    background-image: -o-linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    background-image: -webkit-linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 30%;
+    position: absolute;
+}
+
+.bg-grand1 {
+    height: 100%;
+    background-color: transparent;
+    background-image: linear-gradient(white, transparent);
+    background-image: -moz-linear-gradient(white, transparent);
+    background-image: -o-linear-gradient(white, transparent);
+    background-image: -webkit-linear-gradient(white, transparent);
+}
+
+.hero__img {
+  min-height: var(--pagesize-mobile);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  position: relative;
+  height: calc(100vh - #{$nav-height});
+  @include lg {
+    height: 100vh;
+  }
+
+}
+
+.powered-by-pbc {
+  display: none;
+  @include lg {
+    display: block;
+  }
+  width: 165px;
+  height: auto;
+  padding:0;
+  margin-right: 2rem;
+}
+
+.city-logo-wrapper {
+  display: none;
+
+
+  @include lg {
+    display: flex;
+  }
+
+  .city-logo-text {
+    display: block;
+    height: 50px;
+    line-height: 56px;
+    font-size: 1.6rem;
+    margin-right: 1rem;
+    font-family: var(--pbc-font-light);
+  }
+
+  .city-logo-img {
+    padding: 0 9px;
+    width: 50px;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+.hero__pbc-and-partner {
+  display: flex;
+  padding: 7rem 3rem 3.7rem;
+}
+
+/*-----------------------
+# END OF HERO
+------------------------*/

@@ -1,0 +1,232 @@
+
+/*--------------------------
+site-color-schema
+---------------------------*/
+$primary-clr: $clr-dark-blue;
+$secondary-clr: $clr-sky-blue;
+
+/*---------------------------
+end of site-color-schema
+----------------------------*/
+
+
+
+
+
+/*-----------------------
+pbc-fonts
+-----------------------*/
+
+$pbc-font-light: "Graphik-Light";
+$pbc-font-regular: "Graphik-Regular";
+$pbc-font-medium: "Graphik-Medium";
+
+
+/*---------------------
+end of pbc-fonts
+----------------------*/
+
+
+
+/*-----------------------
+pbc-html-tag-sizes
+-------------------------*/
+$h1-size:2.6rem;
+$h2-size:2.4rem;
+$h3-size:2.2rem;
+$h4-size:1.8rem;
+$subtitle-size: 1.7rem;
+$p-size: 1.6rem;
+$p-size-sm: 1.4rem;
+
+/**----------------------
+end pbc-html-tag-sizes
+------------------------*/
+
+
+/*-----------------------
+pbc-custom-ui-elem-sizes
+-------------------------*/
+$acc-header-size:1.8rem;
+$display-1:5.0rem;
+$display-2:3.6rem;
+$display-3:3.2rem;
+$display-4:2.8rem;
+$btn-size:1.4rem;
+$btn-size-sm:1.2rem;
+
+/*-----------------------
+end of pbc-custom-ui-elem-sizes
+-------------------------*/
+
+
+/*-----------------------
+pbc-custom-ui-elem-borders
+-------------------------*/
+$contact-border-radius:40px;
+
+/*-----------------------
+end of pbc-custom-ui-elem-borders
+-------------------------*/
+
+/*-----------------------
+pbc-custom-ui-elem-margins
+-------------------------*/
+$nav-margin:calc(1.3793103448% / 2);
+$nav-height: 70px;
+$my-1:0.5rem;
+$my-2:1.0rem;
+$my-3:1.5rem;
+$mt-1:.5rem;
+$mt-2:1.0rem;
+$mt-3:1.5rem;
+$mt-4:2.0rem;
+$mt-5:2.5rem;
+
+$mt-sec-1:5rem;
+$mt-sec-2:10rem;
+$mt-sec-3:15rem;
+$mt-sec-4:20rem;
+$mt-sec-5:25rem;
+
+
+/*-----------------------
+pbc-custom-ui-elem-margins
+-------------------------*/
+
+
+/*-----------------------
+pbc-custom-ui-elem-padding
+-------------------------*/
+
+$py-1:0.5rem;
+$py-2:1.0rem;
+$py-3:1.5rem;
+$px-1:0.5rem;
+$px-2:1.0rem;
+$px-3:1.5rem;
+$px-4:2.0rem;
+
+/*-----------------------
+pbc-custom-ui-elem-padding
+-------------------------*/
+
+
+/*-----------------------
+pbc-grid-var
+-------------------------*/
+$max-sm-width: 390px;
+$max-md-width: 768px;
+$max-lg-width: 1100px;
+$max-xl-width: 1280px;
+
+$bg-clr-pink: #fadf;
+
+$col-sm-1: 22.8571428571429%;
+$col-sm-2: 45.714285714286%;
+$col-sm-3: 68.5714285714286%;
+$col-sm-4: 91.428571428571%;
+
+$col-usm-1: 25%;
+$col-usm-2: 50%;
+$col-usm-3: 75%;
+$col-usm-4: 100%;
+
+$gap-sm-out: 20px;
+$gap-sm: 2.85714285714286%;
+
+$col-md-1: 7.068966%;
+$col-md-2: 14.137931%;
+$col-md-3: 21.206897%;
+$col-md-4: 28.275862%;
+$col-md-5: 35.344828%;
+$col-md-6: 42.413793%;
+$col-md-7: 49.482759%;
+$col-md-8: 56.551724%;
+$col-md-9: 63.620690%;
+$col-md-10: 70.689655%;
+$col-md-11: 77.758621%;
+$col-md-12: 84.827586%;
+
+$col-umd-1: 8.33333333333%;
+$col-umd-2: 16.66666666667%;
+$col-umd-3: 25.00%;
+$col-umd-4: 33.33333333333%;
+$col-umd-5: 41.66666666667%;
+$col-umd-6: 50.00%;
+$col-umd-7: 58.33333333333%;
+$col-umd-8: 66.66666666667%;
+$col-umd-9: 75.00%;
+$col-umd-10: 83.33333333333%;
+$col-umd-11: 91.66666666667%;
+$col-umd-12: 100.00%;
+
+$gap-md-out: 60px;
+$gap-md: 1.37931034482759%;
+/*-----------------------
+end of pbc-grid-var
+-------------------------*/
+
+
+
+
+/*******
+Examples
+ */
+
+
+
+ /**
+ Nesting
+  */
+
+ //div {
+ //
+ //  font-size: 1.6rem;
+ //  h1 {
+ //    font-size: 2.9rem;
+ //  }
+ //  p {
+ //    font-size: $p-size;
+ //  }
+ //}
+
+
+ /**
+ end of Nesting
+  */
+
+
+/**
+Inheritance
+*/
+/** model von messages */
+%messages {
+  font-family: $pbc-font-light;
+  font-size: $p-size;
+  border: 1px solid $clr-grey-blue;
+  padding: 20px;
+  margin: 20px;
+}
+
+.success {
+  @extend %messages;
+  background-color: $clr-grey-blue;
+}
+
+.error {
+  @extend %messages;
+  background-color: $clr-grey-blue;
+}
+
+.warning {
+  @extend %messages;
+  background-color: $clr-grey-blue;
+}
+
+
+
+/**
+end of Inheritance
+ */
+

@@ -1,0 +1,256 @@
+.nav-btn {
+    z-index:6;
+    position: absolute;
+    right: 17px;
+    bottom: 17px;
+}
+.nav--logo_line_text{
+    height: 30px;
+    line-height: 40px;
+    vertical-align: center;
+    horiz-align: center;
+    color: white;
+    font-size: 1.2rem;
+    padding-right: 1.5rem;
+}
+
+.nav--logo_line_city-logo{
+    margin-right: 2rem;
+    height: 40px;
+    line-height: 40px;
+    width: auto;
+}
+
+.nav--logo_line_powered_by_pbc {
+    height: 30px;
+    line-height: 40px;
+    width: auto;
+}
+
+
+.nav-logo-wrapper {
+
+  background-color: white;
+  @include lg {
+    padding: 0 $nav-margin;
+  }
+}
+
+.nav--logo_line{
+    position: absolute;
+    top: calc(100vh - 110px);
+    left: var(--percent-side-mobile);
+    display: flex!important;
+    flex-direction: row;
+    justify-content: space-between;
+    width: calc(100vw - 2*var(--percent-side-mobile));
+}
+
+
+
+/**********/
+.navbar > ul {
+    display: flex;
+    padding-left: 0;
+    flex-direction: column;
+    /*margin: -110rem 0 0 0;*/
+    position: relative;
+    bottom: -100vh;
+}
+
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $nav-height;
+  padding: $nav-margin;
+  @include lg{
+    padding: 0;
+  }
+}
+
+.header {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 9999;
+    background: $clr-white;//todo: change color: linear-gradient(0deg, $clr-mweu-gradient-blue 0%, $clr-mweu-blue 100%);
+    @include lg {
+      position: fixed;
+      background: $clr-white;
+      top: 0;
+      bottom: unset;
+    }
+}
+
+.nav-md-menu {
+  visibility: hidden;
+  display: none;
+  @include lg {
+    visibility: visible;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+%nav-menu-item {
+  font-family: $pbc-font-medium;
+  list-style: none;
+
+}
+
+.nav-md-menu-item {
+  @extend %nav-menu-item;
+  padding-right: 2rem;
+  @include lg {
+    padding-right: 4em;
+  }
+}
+
+#navMob {
+  display: block;
+  cursor: pointer;
+  width: 30px;
+  @include lg {
+    display: none;
+  }
+}
+
+%bar {
+  width: 22px;
+  height: 2px;
+  margin: 5px 0;
+  background-color: $clr-sky-blue;
+  transition: .4s;
+}
+
+.bar1, .bar2 {
+  @extend %bar;
+}
+
+.nav-sm-menu {
+  width: 100%;
+}
+
+.navbar-sm {
+  background-color: $clr-mweu-gradient-blue;
+  bottom: calc(-100vh + #{$nav-height});
+  font-size: $display-2;
+  height: calc(100vh - #{$nav-height});
+  left: 0;
+  position: absolute;
+  padding-left: $px-4;
+  padding-right: $px-4;
+  transform: translate3d(0,100vh,0);
+  transition: transform .5s cubic-bezier(.39,.575,.565,1),visibility 0s .5s,-webkit-transform .5s cubic-bezier(.39,.575,.565,1);
+  visibility: hidden;
+  width: 100%;
+  z-index: 3333;
+  @include lg {
+    display: none;
+    visibility: hidden;
+  }
+
+  .nav-sm-menu-item {
+    @extend %nav-menu-item;
+    margin:$my-3 0;
+  }
+
+}
+
+.navbar-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  flex-direction: column;
+  height: 100%;
+}
+
+.nav-sm-footer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: $mt-5;
+}
+
+.open-nav-sm-menu {
+  .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 5px);
+    transform: rotate(-45deg) translate(2px, 5px);
+  }
+  .bar2 {
+    -webkit-transform: rotate(45deg) translate(0, 4px);
+    transform: rotate(45deg) translate(0, -7px);
+  }
+  .navbar-sm {
+    display: flex;
+    visibility: visible;
+    transform: translate3d(0,-100vh,0);
+    transition: transform .5s cubic-bezier(.39,.575,.565,1),visibility 0s 0s,-webkit-transform .5s cubic-bezier(.39,.575,.565,1);
+  }
+
+  overflow: hidden;
+}
+
+
+
+.nav-sm-menu-link {
+    color: $clr-sky-blue-light;
+}
+
+.menu-md-link {
+  color: $clr-dark-blue;
+}
+
+.menu-sm-link {
+  color: $clr-white;
+}
+
+.nav-sm-bg_logo{
+    position: absolute;
+    top: -7.5vh;
+    left: -25vw;
+}
+
+.nav-sm-pbc_logo{
+  display: block;
+  width: 33%;
+  @include lg {
+    display: none;
+  }
+
+}
+
+.nav-sm-city_wrapper {
+  display: flex;
+  width: 67%;
+}
+
+
+.city-sm-logo-img {
+  padding: 0 9px;
+  width: 50px;
+  height: auto;
+  object-fit: contain;
+}
+
+// todo: löschen  zeurst javascript
+//.show {
+//    display: none!important;
+//  .show {
+//    display: block!important;
+//}
+//
+//.active {
+//    height: 100vh!important;
+//}
+//
+//.open-menu {
+//    bottom: calc(-50vh + 250px)!important;
+//    transition:all 500ms cubic-bezier(0.22, 0.61, 0.36, 1);
+//}
+//}

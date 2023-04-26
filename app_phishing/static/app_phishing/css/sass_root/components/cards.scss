@@ -1,0 +1,64 @@
+/*-----------------------
+CARD
+-----------------------*/
+.cards-wrapper {
+  display: flex;
+  gap: 3.5rem;
+}
+
+.card {
+  border-radius: 20px;
+  height: 410px;
+  width: 280px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  overflow: hidden;
+  z-index: 5;
+  position: relative;
+}
+
+.card-img-body {
+  width: 100%;
+  z-index: 2;
+  position: relative;
+  max-height: 68.292682926%;
+}
+
+.card-img {
+  object-fit: cover;
+  z-index: 1;
+  position: absolute;
+}
+
+
+.card-content-body {
+  padding: 1.5rem 1.8rem 1.8rem;
+  height: 130px;
+  max-height: 31.707317073%;
+
+  h4 {
+    margin: 0.5rem 0;
+    padding: 0;
+  }
+
+  p {
+    margin: 0.5rem 0;
+    padding: 0;
+    display: inline-block;
+  }
+}
+
+
+.progress-wrapper {
+  display: inline-block;
+}
+
+.circle {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 3px solid $clr-sky-blue;
+}
+/*-----------------------
+END OF CARD
+-----------------------*/

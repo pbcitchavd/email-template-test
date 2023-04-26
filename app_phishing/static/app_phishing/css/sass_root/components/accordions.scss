@@ -1,0 +1,56 @@
+/*-----------------------
+ACCORDION
+-----------------------*/
+.acc-button {
+  padding: 1.5rem 0 1rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.acc-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.acc-header {
+  font-size: $p-size;
+  @include md {
+    font-size:$acc-header-size;
+  }
+}
+
+.acc-content {
+    font-family: var(--pbc-font-light);
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s ease;
+}
+
+.acc-icon-hide {
+  display: none;
+
+}
+
+.acc-icon {
+   path {
+   fill: $clr-grey-blue;
+  }
+  rect {
+   fill: $primary-clr;
+  }
+
+  svg {
+    width: 15px;
+  }
+}
+
+.acc-item {
+    border-bottom: 0.1rem solid $clr-grey-blue;
+}
+
+
+/*-----------------------
+END OF ACCORDION
+-----------------------*/

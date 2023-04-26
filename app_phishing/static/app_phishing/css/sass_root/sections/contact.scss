@@ -1,0 +1,61 @@
+/*-----------------------
+SECTION
+-----------------------*/
+/*---------------------
+END OF SECTION
+----------------------*/
+
+
+/*-----------------------
+CONTACT
+-----------------------*/
+.add-margin {
+  margin-bottom: 300px ;
+}
+
+.contact-section {
+  background: linear-gradient(0deg, $clr-mweu-gradient-blue 0%, $clr-mweu-blue 100%);
+  color: $clr-white;
+  border-top-left-radius: $contact-border-radius;
+  border-top-right-radius: $contact-border-radius;
+  padding: calc(4.5rem + 55px);
+  z-index: 999;
+  @include lg {
+    padding: 5.5rem;
+  }
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  transform: translate3d(0,100%,0);
+  -webkit-transform: translate3d(0,100%,0);
+  transition: transform .3s cubic-bezier(.39,.575,.565,1),visibility 0s .4s,-webkit-transform .3s cubic-bezier(.39,.575,.565,1);
+  visibility: hidden;
+}
+
+.contact-section-open {
+
+  @include lg {
+    visibility: visible;
+    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+    transition: transform .3s cubic-bezier(.39,.575,.565,1),visibility 0s 0s,-webkit-transform .3s cubic-bezier(.39,.575,.565,1);
+  }
+}
+
+
+.contact-link-clr{
+    color: $clr-white!important;
+}
+
+.contact-elem {
+  h1, h4,p{
+    margin: 0;
+    letter-spacing: 0;
+  }
+  padding-bottom: 2rem;
+}
+
+
+/*-----------------------
+END OF CONTACT
+-----------------------*/

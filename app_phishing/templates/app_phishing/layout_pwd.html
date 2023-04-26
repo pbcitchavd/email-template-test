@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'app_phishing/assets/bootstrap/css/bootstrap.min.css' %}" >
+    <link rel="stylesheet" href="{% static 'app_phishing/assets/bootstrap-icons/bootstrap-icons.css' %}" >
+</head>
+<body style="background: url('{% static "app_phishing/img/Liniennetz_PBC.png" %}'); background-position: center center; background-repeat: no-repeat; background-size: cover;" >
+<div class="container">
+    {% block main %}
+
+    {% endblock %}
+</div>
+
+<script  src="{% static 'app_phishing/assets/bootstrap/js/bootstrap.bundle.min.js' %}" ></script>
+</body>
+</html>

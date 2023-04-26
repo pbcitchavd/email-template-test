@@ -1,0 +1,243 @@
+body {
+    font-family: $pbc-font-regular, sans-serif;
+    font-size: $p-size;
+    line-height: 1.5;
+    color: $clr-text-color-grey!important;
+    background-color: $clr-body-bg-grey!important;
+}
+
+input {
+  background-color: $clr-body-bg;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+h1,h2,h3,h4 {
+  font-family: $pbc-font-medium;
+}
+
+h1 {
+  font-size: $h1-size;
+}
+
+h2 {
+    font-size: $h2-size;
+}
+
+h3 {
+    font-size: $h3-size;
+}
+
+h4 {
+    font-size: $h4-size;
+}
+
+
+p {
+    font-size: $p-size;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+.subtitle {
+  font-size: $subtitle-size;
+  font-family: $pbc-font-medium;
+  margin: 0.67rem 0;
+}
+
+
+$orders: 0, 1, 2, 3, 4;
+
+@each $order in $orders {
+  .order-sm-#{$order} {
+    order: $order;
+  }
+
+}
+@include md {
+  @each $order in $orders {
+
+    .order-md-#{$order} {
+      order: $order;
+    }
+  }
+}
+
+.font-medium {
+    font-family: $pbc-font-medium!important;
+}
+
+.font-regular {
+    font-family: $pbc-font-regular!important;
+}
+
+.font-light {
+    font-family: $pbc-font-light!important;
+}
+
+.txt-regular {
+  font-family: "Graphik Regular", sans-serif;
+}
+
+.txt-bold {
+  font-family: "Graphik Medium", sans-serif;
+}
+
+.self-txt-alg-center {
+  text-align: center;
+}
+
+.txt-clr-primary {
+  color: $clr-dark-blue;
+}
+
+.txt-clr-secondary {
+  color: $clr-sky-blue;
+}
+
+.txt-clr-white {
+  color: $clr-white;
+}
+
+
+%badge {
+  background-color: $clr-sky-blue;
+  color: $clr-white;
+  padding: 1.3rem 3rem;
+}
+
+
+%heading {
+  margin: 0;
+  padding: 0;
+  letter-spacing: -1px;
+  font-family: "Graphik Regular", sans-serif;
+
+}
+
+._badge {
+  @extend %badge;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  max-width: 95%;
+  @include sm {
+    border-radius: 30px;
+    width: 100%;
+  }
+}
+
+._display-sm-1 {
+  @extend %heading;
+  font-size: $display-4;
+  line-height: 1.11111116;
+}
+
+._display-md-2 {
+  @extend %heading;
+  @include md {
+    font-size: $display-2;
+  }
+}
+
+
+._display-md-1 {
+  @extend %heading;
+  @include md {
+    font-size: $display-1;
+    line-height: 1.12;
+  }
+
+}
+
+._display-sm-4 {
+  @extend %heading;
+  font-size: $p-size;
+}
+
+
+._display-md-4 {
+  @extend %heading;
+  @include md {
+    font-size: $display-4;
+  }
+
+}
+
+
+._d-flex {
+  display: flex;
+  gap: 2rem;
+}
+
+.z-idx-5 {
+  z-index: 5;
+  position: relative;
+}
+
+._gradient-overlay {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  position: absolute;
+  background: linear-gradient(0deg, rgba(0,103,116,0.8) 0%, rgba(25,131,142,0.5) 20%, rgba(0,0,0,0) 35%);
+}
+
+
+.mt-sec-1 {
+  margin-top: $mt-sec-1;
+}
+
+.mt-sec-2 {
+  margin-top: $mt-sec-2;
+}
+
+
+.my-sec-sm-1 {
+  margin-top: $mt-sec-1;
+  margin-bottom: $mt-sec-1;
+}
+.my-sec-sm-2 {
+  margin-top: $mt-sec-2;
+  margin-bottom: $mt-sec-2;
+}
+
+.my-sec-sm-3 {
+  margin-top: $mt-sec-3;
+  margin-bottom: $mt-sec-3;
+}
+
+.my-sec-md-1 {
+  @include lg {
+    margin-top: $mt-sec-1;
+    margin-bottom: $mt-sec-1;
+  }
+}
+
+.my-sec-md-2 {
+  @include lg {
+    margin-top: $mt-sec-2;
+    margin-bottom: $mt-sec-2;
+  }
+}
+
+.my-sec-md-3 {
+  @include lg {
+    margin-top: $mt-sec-3;
+    margin-bottom: $mt-sec-3;
+  }
+}
+
+.my-sec-md-4 {
+  @include lg {
+    margin-top: $mt-sec-4;
+    margin-bottom: $mt-sec-4;
+  }
+}

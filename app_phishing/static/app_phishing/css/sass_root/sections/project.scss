@@ -1,0 +1,43 @@
+.project__content{
+    font-family: $pbc-font-light;
+    transition: height 0.5s ease;
+}
+
+.open {
+    opacity: 0.3;
+    transition-delay: .5ms;
+    transition: opacity 0.5s ease-in-out, visibility 0.7s ease-in-out, height 0.5s ease-in-out;
+    opacity: 1;
+}
+
+.project__more {
+    color: $clr-grey;
+    font-size: $p-size-sm;
+}
+
+
+#project__page {
+    overflow-y: auto;
+}
+
+
+.project__img {
+    margin-top: 2.67rem;
+    object-fit: contain;
+    width: 100%;
+}
+
+
+.project__icon-wrapper{
+    display: flex;
+    justify-content: right;
+    border-bottom: var(--pbc-blue) 1px solid;
+    width: 100%;
+}
+
+ .project__description {
+        padding-right: var(--percent-side-desktop);
+        order:1;
+}
+
+

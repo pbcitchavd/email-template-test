@@ -1,0 +1,68 @@
+.project--content {
+  font-family: var(--pbc-font-light);
+  height: 100px;
+  overflow: hidden;
+  transition: height 0.5s ease;
+}
+
+/*--------------------------------------------------------------
+# PROJECT
+--------------------------------------------------------------*/
+#project--page {
+  overflow-y: auto;
+}
+
+.project--description {
+  order: 2;
+}
+
+.project--img {
+  border-radius: 25px;
+  order: 1;
+  margin-top: 1rem;
+}
+
+.project--icon_wrapper {
+  display: flex;
+  justify-content: right;
+  border-bottom: var(--pbc-blue) 1px solid;
+  width: 100%;
+}
+
+.project--description {
+  padding-right: var(--percent-side-desktop);
+  order: 1;
+}
+
+.project--content {
+  font-family: var(--pbc-font-light);
+  height: 40vh;
+  overflow: hidden;
+  transition: height 0.5s ease;
+}
+
+.project--img {
+  object-fit: cover;
+  height: fit-content;
+  width: auto;
+  max-height: 40vh;
+  order: 2;
+}
+
+h1 {
+  font-size: 4.2rem;
+}
+
+h2 {
+  font-size: 3.2rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+h4 {
+  font-size: 2.2rem;
+}
+
+/*# sourceMappingURL=project.css.map */

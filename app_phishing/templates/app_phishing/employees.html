@@ -1,0 +1,70 @@
+{% extends 'app_phishing/base.html' %}
+{% load static %}
+{% block header %}
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 d-flex align-items-center ">
+            <h2 class="display-2"><i class="bi bi-speedometer2"></i> PBC-IT Admin Panel</h2>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <table class="table text-white">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">USERNAME</th>
+            <th scope="col">NAME, VORNAME</th>
+            <th scope="col">email</th>
+            <th scope="col">send-email</th>
+            <th scope="col">passwort</th>
+            <th scope="col">link-open<br> (status)</th>
+            <th scope="col">email-test</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in users %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ employee.username }}</td>
+            <td>{{ employee.full_name }}</td>
+            <td>{{ employee.user_email }}</td>
+            <td>
+                <form method="post" action="{% url 'app_phishing:send_mail_to_user' employee.id %}"> {% csrf_token %}
+                {% if employee.usermailtemplate.first.is_active  %}
+                    <i style="color: #0eb968" class="bi bi-envelope-check"></i>
+                {% else %}
+                    <button type="submit" class="btn btn-outline-danger btn-lg" ><i class="bi bi-envelope-x"></i></button>
+                {% endif %}
+                </form>
+            </td>
+            <td>
+                <div class="form-floating mb-3">
+                    <input type="password" readonly class="form-control-plaintext" id="floatingPlaintextInput" placeholder="passwort" value="{% if employee.pwd %}{{ employee.pwd }}{% endif %}">
+                    <label for="floatingPlaintextInput"></label>
+                </div>
+            </td>
+            <td>{% if employee.is_active is True %}<i style="color: orangered" class="bi bi-envelope-open-fill"></i>{% else %}<i style="color: seagreen" class="bi bi-envelope-fill"></i> {% endif %}</td>
+            <td>
+                <form action="{% url 'app_phishing:show_template' employee.id %}" method="post">{% csrf_token %}
+                    <button class="btn-outline-secondary btn" type="submit">Email-Templates testen</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    </div>
+{% endblock %}
+{% block footer %}
+    <div class="row">
+        <div class="col-md-12">
+            <p>TM © 2023 - PB Consult GMBH - All Rights Reserved</p>
+        </div>
+    </div>
+    <form method="post" action="{% url 'app_phishing:send_mail' %}">{% csrf_token %}
+        <button class="btn btn-outline-dark " type="submit">Email To You</button>
+    </form>
+{% endblock %}

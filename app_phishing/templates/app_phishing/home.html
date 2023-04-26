@@ -1,0 +1,155 @@
+{% extends 'app_phishing/base.html' %}
+{% load static %}
+{% block header %}
+    <nav class="navbar navbar-dark navbar-expand-lg bg-body-tertiary">
+        <div class="container-md">
+            <a class="navbar-brand" href="#"><h2>PBC-IT</h2></a>
+        </div>
+    </nav>
+
+{% endblock %}
+
+{% block main %}
+    <section class="container text-center py-5" style="height: 650px">
+        <div class="row">
+            <div class="col-6">
+                <h1 class="fw-light text-white display-2 my-5">Phishing-Test durchgeführt</h1>
+                <h2 class="fw-light text-white display-2 my-5">Wichtig - bitte lesen!</h2>
+                <p>
+                    Unsere IT-Abteilung hat einen Phishing-Test durchgeführt, um unsere Mitarbeiterinnen und Mitarbeiter
+                    für mögliche Bedrohungen im Zusammenhang mit Phishing-E-Mails zu sensibilisieren. Dabei wurde eine
+                    gefälschte E-Mail verschickt, um zu überprüfen, ob die Mitarbeiterinnen und Mitarbeiter
+                    die Warnhinweise erkannt und angemessen darauf reagiert haben. Dieser Test dient dazu, unsere
+                    Mitarbeiterinnen und Mitarbeiter für die Gefahren von Phishing zu schulen und unsere
+                    IT-Sicherheitsmaßnahmen zu verbessern.
+                </p>
+            </div>
+        </div>
+    </section>
+    <div class="my-5" ></div>
+    <section class="py-5" style="background-color:  #212529;" id="email-test">
+        <div class="container">
+            <div class="row py-5 text-center">
+                <h2 class="display-2  ">Email-Test</h2>
+                <hr/>
+            </div>
+            <div class="row align-items-start">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-12 shadow-sm">
+                            <h3 class="display-4 py-5">Erklärung</h3>
+                            <ol class="list-group list-group-numbered">
+                                <li class="list-group-item d-flex justify-content-between align-items-start py-4">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold h2 pb-2"><span class="text-bg-primary p-3" >1.</span> Achtung vor gefälschten E-Mails und Spoofing-Attacken</div>
+                                        Es ist wichtig, bei der Nutzung von E-Mails und anderen digitalen Kommunikationsmitteln achtsam zu sein. Einige Angreifer nutzen gefälschte E-Mail-Adressen, um den Eindruck zu erwecken, dass eine E-Mail von einem vertrauenswürdigen Absender stammt. Dies wird als "Spoofing" bezeichnet.
+                                        Es ist daher ratsam, bei der Überprüfung von E-Mails immer auf die Domain des Absenders zu achten, um sicherzustellen, dass sie mit dem tatsächlichen Unternehmen übereinstimmt. Wenn es Zweifel an der Echtheit einer E-Mail gibt, sollte man sie nicht beantworten oder auf Links oder Anhänge klicken.
+                                        Bleiben Sie immer wachsam, um sich vor Cyber-Bedrohungen zu schützen und wenden Sie sich an das IT-Sicherheitsteam, wenn Sie Bedenken oder Fragen haben.
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">25%</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start py-4">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold h2 pb-2"><span class="text-bg-primary p-3" >2.</span>  externer Absender</div>
+                                        In den internen E-Mails unseres Unternehmens gibt es keinen Hinweis darauf,
+                                        dass eine E-Mail von einem externen Absender stammt. Daher ist es wichtig,
+                                        dass jeder Mitarbeiter wachsam bleibt und bei E-Mails von unbekannten Absendern
+                                        oder verdächtigen Inhalten besonders vorsichtig ist, um mögliche Sicherheitsrisiken zu minimieren.
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">25%</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start py-4">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold h2 pb-2"><span class="text-bg-primary p-3" >3.</span>  Anrede</div>
+                                           In den E-Mails, die an uns gesendet werden, ist es wichtig,
+                                            auf die Anrede und den Inhalt zu achten, um potenzielle Phishing-E-Mails zu erkennen.
+                                        Phishing-E-Mails haben oft eine unpersönliche Anrede und können verdächtige Links oder Anhänge enthalten.
+                                        Wir sollten daher immer wachsam bleiben und verdächtige E-Mails melden, um die Sicherheit unserer Daten und Systeme zu gewährleisten.
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">25%</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start py-4">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold h2 pb-2"><span class="text-bg-primary p-3" >4.</span>  Link </div>
+                                          Der Zweck des Buttons in der E-Mail war, um zu testen, ob die Empfänger darauf
+                                        klicken würden. Wenn eine E-Mail Links enthält, sollten wir vorsichtig sein und
+                                        sie nicht einfach anklicken, insbesondere wenn sie von unbekannten Absendern stammen oder verdächtig aussehen.
+                                        Es ist wichtig zu wissen, dass Phishing-E-Mails darauf abzielen, uns dazu zu bringen,
+                                        auf Links oder Anhänge zu klicken, die möglicherweise Malware oder Viren enthalten.
+                                        Aus diesem Grund sollten wir immer wachsam sein und verdächtige
+                                        E-Mails an unsere IT-Abteilung weiterleiten, um mögliche Bedrohungen zu minimieren.
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">25%</span>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <dic class="col-6">
+                    <h3 class="display-4 py-5"> Email-Vorlage</h3>
+                    <img src="{% static 'app_phishing/img/email-test.png' %}" height="700px" width="auto" usemap="#test" id="email-test">
+                    <map name="test">
+                      <area shape="rect" coords="853,180,907,235" href="#" title="This is the first hotspot">
+                      <area shape="rect" coords="100,0,200,30" href="#" title="This is the second hotspot">
+                      <area shape="rect" coords="200,0,300,30" href="#" title="This is the third hotspot">
+                    </map>
+                </dic>
+            </div>
+        </div>
+    </section>
+    <div class="my-5"></div>
+    <section class="py-5" style="background-color:  #212529;" id="template-test">
+        <div class="container">
+            <div class="row py-5 text-center">
+                <h2 class="display-2  ">Template-Test</h2>
+                <hr/>
+            </div>
+            <div class="row align-items-start">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-12 shadow-sm">
+                            <h3 class="display-3 py-5">Erklärung</h3>
+                            <ol class="list-group list-group-numbered">
+                                <li class="list-group-item d-flex justify-content-between align-items-start py-4">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">Achtung: -> </div>
+                                          man sollte hier sehe dass es um externe email-server handelt
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">14</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start py-4">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">Subheading</div>
+                                          Content for list item
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">14</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start py-4">
+                                    <div class="ms-2 me-auto">
+                                        <div class="fw-bold">Subheading</div>
+                                          Content for list item
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill">14</span>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <dic class="col-6">
+                    <h3 class="display-3 py-5"> Test</h3>
+                    <img src="{% static 'app_phishing/img/screenshot_test.png' %}">
+                </dic>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block footer %}
+    <div class="row">
+        <div class="col-md-12">
+            <p>TM © 2023 - PB Consult GMBH - All Rights Reserved</p>
+        </div>
+    </div>
+    <form method="post" action="{% url 'app_phishing:send_mail' %}">{% csrf_token %}
+        <button class="btn btn-outline-warning" type="submit">Email To You</button>
+    </form>
+{% endblock %}

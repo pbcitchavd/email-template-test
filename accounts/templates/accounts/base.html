@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Phishing App</title>
+    <link href="{% static 'accounts/assets/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'accounts/assets/bootstrap-icons/node_modules/bootstrap-icons/font/bootstrap-icons.css' %}" rel="stylesheet">
+</head>
+<body style="font-size: 16px">
+    <div class="page-wrapper">
+        <header>
+            <div class="container" style="min-height: 100%">
+                {% block header %}{% endblock %}
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+        </header>
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+        <footer>
+        <div class="container">
+            {% block footer %}{% endblock %}
+        </div>
+
+        </footer>
+
+    </div>
+
+
+</body>
+</html>

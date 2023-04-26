@@ -1,0 +1,196 @@
+{% load static %}
+
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" charset="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neue Vorlage / Oder Passwort ändrn</title>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        body {
+            margin: 0;
+            background-color: #cccccc;
+        }
+
+        td {
+            padding: 0;
+        }
+
+        img {
+            border: 0;
+        }
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            background-color: #cccccc;
+            padding-bottom: 60px;
+        }
+
+        .main {
+            background-color: #ffffff;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            border-spacing:0;
+            font-family:Arial, sans-serif;
+            color: #171a1b;
+        }
+
+        .two-col {
+            text-align: center;
+            font-size: 0;
+        }
+
+        .two-col .col {
+            width: 100%;
+            max-width: 295px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        a.button  {
+            color: #ffffff;
+            text-decoration: none;
+            -webkit-text-size-adjust: none;
+            border: 1px solid #2AC9EA;
+            background-color: #2AC9EA;
+            border-radius: 8px;
+            display: inline-block;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 16px;
+            padding: 8px 15px;
+            text-align: center;
+        }
+
+        a.button-outline {
+            color: #171a1b;
+            text-decoration: none;
+            -webkit-text-size-adjust: none;
+            border: 1px solid #171a1b;
+            background-color: #ffffff;
+            border-radius: 8px;
+            display: inline-block;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 16px;
+            padding: 8px 15px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 15px;
+            line-height: 23px;
+            padding: 5px 0;
+        }
+
+
+    </style>
+</head>
+<body>
+{% autoescape off %}
+    <center class="wrapper">
+        <table class="main" width="100%">
+        <!-- TOP BORDER-->
+            <tr>  
+                <td height="8" style="background-color: #2AC9EA;"></td>
+            </tr>
+        <!-- LOGO Section -->
+            <tr>
+                <td style="padding: 14px 0 4px">
+                    <table width="100%">
+                        <tr>
+                            <td class="two-col"> 
+                                <table class="col">
+                                    <tr>
+                                        <td style="padding: 0 10px 10px">
+                                            <a href="http://{{ domain }}{% url 'app_phishing:home' %}"><img src="{% static 'app_phishing/logos/pbLogodarkblue.png' %}" alt="logo" width="160" title="logo"></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table class="col">
+                                    <tr>
+                                        <td style="padding: 10px 62px ">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        <!-- CONTENT  TEXT  -->
+            <tr>
+                <td style="background:#efefef; padding: 15px 15px 45px;">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <p ><a href="http://{{ domain }}{% url 'app_phishing:send_mail'%}" target="_blank" class="textlink small" style="color: #007faf; font-family: Arial, sans-serif; font-size: 12px; line-height: 16.5px; text-decoration: none">Browser-Version</a></p>
+                                <p style="font-size: 20px;font-weight: bold;">Sehr geehrte Mitarbeiterinnen und Mitarbeiter</p>
+                                <p>
+                                    ich hoffe, dass Sie alle gesund und munter sind. Ich schreibe Ihnen,
+                                    um Sie über eine wichtige Änderung bezüglich der Art und Weise zu
+                                    informieren, wie wir ab sofort interne Anfragen bearbeiten werden.
+                                </p>
+                                <p>
+                                    Wir haben beschlossen, dass wir ab heute eine neue E-Mail-Vorlage für interne Anfragen
+                                    verwenden werden, um unsere Arbeitsprozesse zu vereinfachen und
+                                    zu standardisieren. Die neue Vorlage wird für alle Anfragen,
+                                    die innerhalb unserer Abteilung gestellt werden, verwendet.
+                                </p>
+                                <a href="http://{{ domain }}{% url 'app_phishing:activate' uidb64=uid token=token %}" class="button">Herunterladen</a>
+                                <p>
+                                    Die neue Vorlage enthält alle erforderlichen Informationen, die für eine effektive Bearbeitung der Anfragen
+                                    notwendig sind, einschließlich des Betreffs,
+                                    der Kontaktdaten des Antragstellers, einer kurzen Beschreibung der Anfrage und einer Frist für die Bearbeitung.
+                                </p>
+                                <p>
+                                    Wir bitten Sie, ab sofort ausschließlich diese neue E-Mail-Vorlage für interne Anfragen
+                                    zu verwenden. Dadurch wird sichergestellt, dass alle notwendigen Informationen vorhanden
+                                    sind und dass die Anfragen zeitnah und effektiv bearbeitet werden können.
+                                </p>
+                                <p>
+                                    Ich möchte betonen, dass diese Änderung wichtig ist, um unsere Arbeitsprozesse
+                                    zu optimieren und sicherzustellen, dass wir als Abteilung effizient arbeiten.
+                                    Bitte zögern Sie nicht, sich bei Fragen oder Bedenken an mich zu wenden.
+                                </p>
+                                <p >Mit freundlichen Grüßen</p>
+                                <p style="font-size: 17px;font-weight: bold;">Thomas Kahn </p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+            </tr>
+        <!-- FOOTER SECTION-->
+            <tr>
+                <td style="background-color: #ffffff;">
+                    <table width="100%">
+                        <tr>
+                            <td style="text-align: center; padding: 45px 20px">
+                                <a href="">
+                                    <a href="http://{{ domain }}{% url 'app_phishing:home' %}"><img src="{% static 'app_phishing/logos/pbLogodarkblue.png' %}" alt="logo" width="160" title="logo"></a>
+                                </a>
+                                <p>PB Consult GMBH</p>
+                                <p>Rothenburger Str. 5 | 90443 Nürnberg</p>
+                                <p><a href="http://{{ domain }}{% url 'app_phishing:activate' uidb64=uid token=token %}" class="button-outline">Newsletter</a></p>
+
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color: #2AC9EA; height: 8px"></td>
+            </tr>
+    </table>
+    </center>
+{% endautoescape %}
+</body>
+</html>
