@@ -3,9 +3,51 @@
 {% block header %}
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 d-flex align-items-center ">
-            <h2 class="display-2"><i class="bi bi-speedometer2"></i> PBC-IT Admin Panel</h2>
+            <a class="text-secondary nav-link" href="{% url 'app_phishing:employees' %}">
+                <h2 class="display-2">
+                    <i class="bi bi-speedometer2"></i>
+                        PBC-IT Admin Panel
+                </h2>
+            </a>
         </div>
     </div>
+    <div class="row">
+         <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item text-uppercase  pe-4">
+                        <a class="nav-link" aria-current="page" href="{% url 'app_phishing:home' %}">home</a>
+                    </li>
+                    <li class="nav-item text-uppercase  pe-4">
+                        <a class="nav-link" aria-current="page" href="{% url 'app_phishing:query' %}?q=mail_send">
+                            {% if 'mail_send' in request.GET.q %}<i class="bi bi-database-check"></i>{% endif %}
+                            Email-gesendet
+                        </a>
+                    </li>
+                    <li class="nav-item text-uppercase  pe-4">
+                        <a class="nav-link " aria-current="page" href="{% url 'app_phishing:query' %}?q=mail_open">
+                            {% if 'mail_open' in request.GET.q %}<i class="bi bi-database-check"></i>{% endif %}
+                            Email-geöffnet
+                        </a>
+                    </li>
+                    <li class="nav-item text-uppercase  pe-4">
+                        <a class="nav-link " aria-current="page" href="{% url 'app_phishing:query' %}?q=pwd_done">
+                            {% if 'pwd_done' in request.GET.q %}<i class="bi bi-database-check"></i>{% endif %}
+                            Passwort-eingegeben
+                        </a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search" method="post" action="{% url 'app_phishing:search' %}"> {% csrf_token %}
+                    <input class="form-control me-2" type="search" placeholder="Suche" aria-label="Search" name="search">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    </div>
+
+
 
 {% endblock %}
 
@@ -59,12 +101,12 @@
     </div>
 {% endblock %}
 {% block footer %}
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row justify-content-between">
+        <div class="col-lg-9 col-md-9 col-sm-12">
             <p>TM © 2023 - PB Consult GMBH - All Rights Reserved</p>
         </div>
     </div>
     <form method="post" action="{% url 'app_phishing:send_mail' %}">{% csrf_token %}
-        <button class="btn btn-outline-dark " type="submit">Email To You</button>
+        <button class="btn btn-outline-secondary " type="submit">Email To All</button>
     </form>
 {% endblock %}

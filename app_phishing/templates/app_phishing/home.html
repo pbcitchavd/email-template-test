@@ -136,8 +136,8 @@
                     </div>
                 </div>
                 <dic class="col-6">
-                    <h3 class="display-3 py-5"> Test</h3>
-                    <img src="{% static 'app_phishing/img/screenshot_test.png' %}">
+                    <h3 class="display-3 py-5">Anmeldung-Vorlage</h3>
+                    <img src="{% static 'app_phishing/img/template-anmelden.png' %}" height="520px" width="auto">
                 </dic>
             </div>
         </div>
@@ -149,7 +149,4 @@
             <p>TM © 2023 - PB Consult GMBH - All Rights Reserved</p>
         </div>
     </div>
-    <form method="post" action="{% url 'app_phishing:send_mail' %}">{% csrf_token %}
-        <button class="btn btn-outline-warning" type="submit">Email To You</button>
-    </form>
 {% endblock %}

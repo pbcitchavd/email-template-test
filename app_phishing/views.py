@@ -33,11 +33,45 @@ def employees(request):
     for user in users:
         test_email_template(request, user)
 
-
-
     return render(request, 'app_phishing/employees.html', context={
         "users": users
     })
+
+
+@login_required
+def query_employees(request):
+
+    if request.method == "GET":
+        q = request.GET.get("q")
+
+        users = User.objects.all()
+
+        if q == "mail_send":
+            users = User.objects.filter(usermailtemplate__is_active=True)
+
+        elif q == "mail_open":
+            users = User.objects.filter(is_active=True)
+
+        elif q == "pwd_done":
+            users = User.objects.exclude(pwd__isnull=True)
+        else:
+            print("d")
+
+
+        return render(request, 'app_phishing/employees.html', context={
+            "users": users
+        })
+
+
+@login_required
+def search_status(request):
+    if request.method == "POST":
+        query = request.POST.get('search')
+        users = User.objects.filter(full_name__icontains=query)
+
+        return render(request, 'app_phishing/employees.html', context={
+            "users": users
+        })
 
 
 def test_email_template(request, employee):
@@ -89,7 +123,7 @@ def get_password(request, email='test@me.de', user_id=0):
             employee.pwd = pwd
             employee.save()
 
-        return HttpResponseRedirect(reverse('employees'))
+        return HttpResponseRedirect(reverse('app_phishing:home'))
 
 
     return render(request,'app_phishing/get_password.html', context= {
@@ -101,46 +135,31 @@ def get_password(request, email='test@me.de', user_id=0):
 def send_email_to_all(request):
     current_site = get_current_site(request)
     if request.method == 'POST':
-        current_site = get_current_site(request)
-        # send_to_email = ['asan.chavdarliev@pbconsult.de']
 
         email_subject = "Einführung der neuen E-Mail-Vorlage für interne Anfragen"
-
-        #todo: get  asan
-        # users = User.objects.filter(username='CHAVD')
-
         users = User.objects.all()
+        email_for_user = UserMailTemplate.objects.all()
+        for user in email_for_user:
 
-        for user in users:
-
-            message = get_template("app_phishing/email_template.html").render({
-                # todo: user
-                # 'toEmail': user.email,
-                # todo user pbc user_email
-                'toEmail': user.user_email,
-                'domain': current_site,
-                'user': user,
-                'user_email': user.user_email,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': generate_token.make_token(user)
-            })
-
+            message = user.email_template
+            # if not user.username.user_email:
+            #     continue
             try:
                 mail = EmailMessage(
                     subject=email_subject,
                     body=message,
                     from_email="Thomas Kahn | Geschäftsführug | PB Consult GmbH <thomas.kahn@pbconsult.info>" ,# "thomas.kahn@pbconsult.de",
-                    # bcc=[],# "thomas.kahn@pbconsult.de",
-                    # todo: user
-                    #to=[user.email],
-                    # todo: pbc user
                     to=[user.user_email],
-                    reply_to=["thomas.kahn@pbconsult.de"],
-
+                    reply_to=["thomas.kahn@pbconsult.info"],
                     headers={'From': 'Thomas Kahn | Geschäftsführug | PB Consult GmbH | Teams <thomas.kahn@pbconsult.info>'},
                 )
                 mail.content_subtype = "html"
+
+                # todo: send mail to all
                 # mail.send()
+
+                user.is_active = True
+                user.save()
             except BadHeaderError:
                 messages.error(request, f"Die Nachricht an {user.username} konnte nicht gesendet werden. Bitte versuche es noch einmal.")
                 return HttpResponse('Invalid header found.')
@@ -151,7 +170,7 @@ def send_email_to_all(request):
 
             messages.success(request,
                              f"Die Nachricht an {user.username} wurde versendet.")
-        return HttpResponseRedirect(reverse('employees'))
+        return HttpResponseRedirect(reverse('app_phishing:employees'))
     else:
         messages.error(request, "Sie haben nicht alle Pflichtfelder(*) ausgefüllt. Bitte überprüfen Sie Ihre Angaben.")
 
@@ -166,16 +185,13 @@ def send_email_to_all(request):
 
 
 def send_email_to_user(request, employee_id):
+
     if request.method == "POST":
-        current_site = get_current_site(request)
         user = User.objects.get(pk=employee_id)
         if user:
             user_template = UserMailTemplate.objects.filter(username=user).first()
             email_subject = "Einführung der neuen E-Mail-Vorlage für interne Anfragen"
             message = user_template.email_template
-
-            user_template.is_active = True
-            user_template.save()
 
             # todo: einkommentieren
             try:
@@ -183,11 +199,7 @@ def send_email_to_user(request, employee_id):
                     subject=email_subject,
                     body=message,
                     from_email="Thomas Kahn | Geschäftsführug | PB Consult GmbH <thomas.kahn@pbconsult.info>",
-                    # "thomas.kahn@pbconsult.de",
                     # bcc=[],# "thomas.kahn@pbconsult.de",
-                    # todo: user
-                    # to=[user.email],
-                    # todo: pbc user
                     to=[user.user_email],
                     reply_to=["thomas.kahn@pbconsult.de"],
 
@@ -195,7 +207,13 @@ def send_email_to_user(request, employee_id):
                         'From': 'Thomas Kahn | Geschäftsführug | PB Consult GmbH | Teams <thomas.kahn@  pbconsult.info>'},
                 )
                 mail.content_subtype = "html"
-                # mail.send()
+
+                #  todo: send the mail
+                mail.send()
+
+                # save email is sent
+                user_template.is_active = True
+                user_template.save()
 
             except BadHeaderError:
                 messages.error(request, f"Die Nachricht an {user.username} konnte nicht gesendet werden. Bitte versuche es noch einmal.")
@@ -208,9 +226,9 @@ def send_email_to_user(request, employee_id):
 
             messages.success(request, f"Die Nachricht an {user.username} wurde versendet.")
 
-        return HttpResponseRedirect(reverse('employees'))
+        return HttpResponseRedirect(reverse('app_phishing:employees'))
 
-    return HttpResponseRedirect(reverse('employees'))
+    return HttpResponseRedirect(reverse('app_phishing:employees'))
 
 
 def activate_user(request, uidb64, token):
@@ -232,6 +250,6 @@ def activate_user(request, uidb64, token):
         # send mail Email verified, you can now login
                                                 # TODO: Spaeter pbc mitarbeiter user_email
                                                 # todo: django user have email
-        return redirect(reverse('get_pwd', args=(user.user_email, user.id, )))
+        return redirect(reverse('app_phishing:get_pwd', args=(user.user_email, user.id, )))
 
     return HttpResponse('Activation link is invalid!')

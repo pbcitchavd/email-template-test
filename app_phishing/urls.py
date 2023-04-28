@@ -10,5 +10,7 @@ urlpatterns = [
     path('register_pwd/<str:email>/<int:user_id>/', views.get_password, name="get_pwd"),
     path('send_mail/', views.send_email_to_all, name="send_mail"),
     path('send_mail_to_user/<int:employee_id>', views.send_email_to_user, name="send_mail_to_user"),
-    path('activate/<uidb64>/<token>/', views.activate_user, name="activate")
+    path('activate/<uidb64>/<token>/', views.activate_user, name="activate"),
+    path('search/', views.search_status, name="search"),
+    path('query/', views.query_employees, name="query"),
 ]

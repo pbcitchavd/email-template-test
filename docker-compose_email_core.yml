@@ -1,0 +1,79 @@
+version: '3.7'
+
+networks:
+  backend-pbc:
+    driver: bridge
+
+  web:
+    external:
+      name: web
+
+services:
+
+  db:
+    image: postgres:14.1
+    container_name: postgres_db
+    networks:
+      - backend-pbc
+      - web
+
+    ports:
+     - 4380:5432
+    volumes:
+      - postgres_data:/usr/src/postgresql/data/
+    environment:
+      - POSTGRES_USER=core_mail_admin
+      - POSTGRES_PASSWORD=pbcadmin#123!
+      - POSTGRES_DB=core_email_db
+
+  web:
+    build: .
+    container_name: web
+    command: gunicorn mmanagement.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app/
+      #- $PWD/.konzeptionpw:/usr/src/app/.konzeptionpw:ro
+      - static_volume:/usr/src/app/staticfiles
+      - media_volume:/usr/src/app/media_cdn
+
+    env_file:
+      - ./.env.prod
+        #  ports:
+        # - 8000:8000
+    expose:
+      - 8000
+    depends_on:
+      - db
+    networks:
+      - web
+      - backend-pbc
+
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=web
+
+
+  # ---  Routing ---http://pbconsult.info/
+
+      - traefik.http.routers.web-dev-core-email.entrypoints=http
+      - traefik.http.routers.web-dev-core-email.rule=Host(`pbconsult.info`) #  && Path(`/oberasbach`)"
+      #- traefik.http.middlewares.web-dev-core-email-auth.basicauth.users=konzeptionadmin:$$apr1$$/7aE1z8c$$Rnf9g9M6lkIW7H9MY3JtO0
+      - traefik.http.routers.web-dev-core-email.middlewares=https-redirect@file
+      - traefik.http.routers.web-dev-core-email-secured.entrypoints=https
+      - traefik.http.routers.web-dev-core-email-secured.rule=Host(`pbconsult.info`) # && Path(`/oberasbach`)"
+
+  # ---  App-Auth  ---
+      #- traefik.http.routers.web-dev-core-email-secured.middlewares=web-dev-core-email-auth
+
+  # --- SSL Routing ---
+
+      # - 'traefik.http.routers.my-app.service=app'
+      - traefik.http.routers.web-dev-core-email-secured.tls=true
+      - traefik.http.routers.web-dev-core-email-secured.tls.certresolver=le
+
+      # - 'traefik.http.services.app.loadbalancer.server.port=8000'
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
