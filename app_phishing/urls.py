@@ -1,4 +1,6 @@
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 
 app_name = "app_phishing"
@@ -14,3 +16,6 @@ urlpatterns = [
     path('search/', views.search_status, name="search"),
     path('query/', views.query_employees, name="query"),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
