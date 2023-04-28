@@ -1,3 +1,4 @@
 .idea
 beUser.csv
 db.sqlite3
+staticfiles

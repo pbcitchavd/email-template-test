@@ -32,9 +32,9 @@ else:
     DEBUG = True
 
 
-
 ALLOWED_HOSTS = [
-    'pbconsult.info'
+    '127.0.0.1',
+    'pbconsult.info',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -144,12 +144,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 STATICFILES_DIRS = (
-  os.path.join(SITE_ROOT, 'static/'),
+    os.path.join(BASE_DIR, 'staticfiles/'),
 )
 
 
