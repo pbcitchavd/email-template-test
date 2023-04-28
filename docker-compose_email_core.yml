@@ -12,7 +12,6 @@ services:
 
   db:
     image: postgres:14.1
-    container_name: postgres_db
     networks:
       - backend-pbc
       - web
