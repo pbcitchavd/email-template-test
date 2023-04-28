@@ -44,14 +44,15 @@ CSRF_TRUSTED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'app_phishing',
-    'accounts',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.staticfiles',
+    
+    'app_phishing',
+    'accounts',
 
 ]
 
@@ -143,9 +144,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'staticfiles/'
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
+# STATICFILES_DIRS = [
+#     BASE_DIR/ "staticfiles"
+# ]
 
 # STATICFILES_DIRS = (
 #     os.path.join(BASE_DIR, 'staticfiles/'),
