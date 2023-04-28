@@ -27,7 +27,7 @@ services:
 
   web:
     build: .
-    command: gunicorn mmanagement.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn core_phishing.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/usr/src/app/
       #- $PWD/.konzeptionpw:/usr/src/app/.konzeptionpw:ro
