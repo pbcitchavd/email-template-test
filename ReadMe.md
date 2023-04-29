@@ -11,3 +11,11 @@ pip install whitenoise
  ```
  export $(xargs < .env)
  ``` 
+
+
+## Set localtime to host-time
+[link zur doc](https://stackoverflow.com/questions/24551592/how-to-make-sure-dockers-time-syncs-with-that-of-the-host)
+
+```
+/etc/localtime:/etc/localtime:ro
+```

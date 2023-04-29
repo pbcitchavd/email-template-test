@@ -1,13 +1,15 @@
+import time
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required
 
-from django.core.mail import send_mail
+from django.core.mail import send_mail, send_mass_mail
 from django.conf import settings
 from django.contrib import messages
 from smtplib import SMTPRecipientsRefused
 from django.core.mail import EmailMessage
+from django.core.mail import EmailMultiAlternatives
 from django.template import Context
 from django.template.loader import get_template
 from django.http import  HttpResponseRedirect, BadHeaderError
@@ -111,10 +113,6 @@ def show_template_in_browser(request, uidb64, token):
 
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
-        # todo: delete me es ist nur zum testen
-        # user = get_user_model().objects.get(pk=uid)
-
-        # Todo: es ist später für alle mitarbeiter
         user = User.objects.get(pk=uid)
 
     except (Exception, TypeError, ValueError, OverflowError):
@@ -144,7 +142,6 @@ def get_password(request, email='test@me.de', user_id=0):
             employee.save()
 
         return HttpResponseRedirect(reverse('app_phishing:home'))
-
 
     return render(request,'app_phishing/get_password.html', context= {
         'user_email': email,
@@ -259,3 +256,142 @@ def activate_user(request, uidb64, token):
         return redirect(reverse('app_phishing:get_pwd', args=(user.user_email, user.id, )))
 
     return HttpResponse('Activation link is invalid!')
+
+
+
+## todo: deprecated
+
+def send_mass_mail_to_all(request):
+
+    if request.method == "POST":
+        email_subject = "Einführung der neuen E-Mail-Vorlage für interne Anfragen"
+        users = User.objects.all()
+        email_for_user = UserMailTemplate.objects.all()
+        mail_messages = ()
+
+        emails = []
+        # for user in emails:
+        #
+        #     message = "user.email_template"
+        #     # if not user.username.user_email:
+        #     #     continue
+        #
+        #     mail = EmailMessage(
+        #         subject=email_subject,
+        #         body=message,
+        #         from_email="Thomas Kahn | Geschäftsführug | PB Consult GmbH <thomas.kahn@pbconsult.info>",
+        #         # "thomas.kahn@pbconsult.de",
+        #         to=[user],
+        #         reply_to=["thomas.kahn@pbconsult.info"],
+        #         headers={
+        #             'From': 'Thomas Kahn | Geschäftsführug | PB Consult GmbH | Teams <thomas.kahn@pbconsult.info>'},
+        #     )
+        #     mail.content_subtype = "html"
+        #
+        #     email_template = get_template("app_phishing/email_template.html").render({
+        #         # todo: user
+        #         # 'toEmail': user.email,
+        #         # todo user pbc user_email
+        #         'toEmail': "test me",
+        #         'domain': "test",
+        #         'user': "employee",
+        #         'user_email': "employee",
+        #         'uid': 254185,
+        #         'token': "fasdf"
+        #     })
+        #
+        #
+        #     # mail_messages = mail_messages + ((
+        #     #                                      email_subject,
+        #     #                                      email_template,
+        #     #                                      "Thomas Kahn | Geschäftsführug | PB Consult GmbH <thomas.kahn@pbconsult.info>",
+        #     #                                      [user],
+        #     #                                  ), )
+        #
+        # try:
+        #     # send_mass_mail(mail_messages, fail_silently=False)
+        #
+        #     # email_template = get_template("app_phishing/email_template.html").render({
+        #     #     # todo: user
+        #     #     # 'toEmail': user.email,
+        #     #     # todo user pbc user_email
+        #     #     'toEmail': "test me",
+        #     #     'domain': "test",
+        #     #     'user': "employee",
+        #     #     'user_email': "employee",
+        #     #     'uid': 254185,
+        #     #     'token': "fasdf"
+        #     # })
+        #     #
+        #     # subject, from_email, to = "hello", "thomas.kahn@pbconsult.info", "asan.chavdarliev@pbconsult.de"
+        #     # text_content = "This is an important message."
+        #     # html_content = "<p>This is an <strong>important</strong> message.</p>"
+        #     # msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+        #     # msg.attach_alternative(email_template, "text/html")
+        #     # msg.send()
+        #
+        # except BadHeaderError:
+        #     messages.error(request, f"Die Nachricht konnte nicht gesendet werden. Bitte versuche es noch einmal.")
+        #
+        #     return HttpResponse('Invalid header found.')
+        #
+        # except SMTPRecipientsRefused:
+        #     messages.error(request, f"Die Nachricht konnte nicht gesendet werden. Bitte versuche es noch einmal.")
+        # messages.success(request, f"Die Nachricht wurde versendet.")
+        #
+        # return HttpResponseRedirect(reverse('app_phishing:send_mass_mail'))
+
+        emails = [
+            'sn1001rmc@gmail.com',
+            'asan.chavdarliev@pbconsult.de',
+            'asan.chavdarliev@gmail.com',
+            'achavdarliev@gmail.com',
+        ]
+        for user in emails:
+
+            email_template = get_template("app_phishing/email_template.html").render({
+                # todo: user
+                # 'toEmail': user.email,
+                # todo user pbc user_email
+                'toEmail': "test me",
+                'domain': "test",
+                'user': "employee",
+                'user_email': "employee",
+                'uid': 254185,
+                'token': "fasdf"
+            })
+
+
+
+
+            try:
+                mail = EmailMessage(
+                    subject=email_subject,
+                    body=email_template,
+                    from_email="Thomas Kahn | Geschäftsführug | PB Consult GmbH <thomas.kahn@pbconsult.info>" ,# "thomas.kahn@pbconsult.de",
+                    to=[user],
+                    reply_to=["thomas.kahn@pbconsult.info"],
+                    headers={'From': 'Thomas Kahn | Geschäftsführug | PB Consult GmbH | Teams <thomas.kahn@pbconsult.info>'},
+                )
+                mail.content_subtype = "html"
+
+                # todo: send mail to all
+                mail.send()
+                time.sleep(1)
+
+            except BadHeaderError:
+                messages.error(request, f"Die Nachricht konnte nicht gesendet werden. Bitte versuche es noch einmal.")
+                return HttpResponse('Invalid header found.')
+
+            except SMTPRecipientsRefused:
+                messages.error(request, f"Die Nachricht konnte nicht gesendet werden. Bitte versuche es noch einmal.")
+                return HttpResponse('Invalid header found.')
+
+            messages.success(request,
+                             f"Die Nachricht wurde versendet.")
+        return HttpResponseRedirect(reverse('app_phishing:send_mass_mail'))
+
+    messages.error(request, f"Keine Nachrichten konnten gesendet werden")
+
+    return render(request, "app_phishing/dev_test_mass_mailing.html")
+

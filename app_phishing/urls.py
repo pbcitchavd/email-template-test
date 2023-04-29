@@ -19,6 +19,10 @@ urlpatterns = [
     path('show_email/<uidb64>/<token>/', views.show_template_in_browser, name="browser_template"),
 ]
 
-urlpatterns += staticfiles_urlpatterns()
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += [path('test_mass_mailing/', views.send_mass_mail_to_all, name="send_mass_mail")]
+
+    urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

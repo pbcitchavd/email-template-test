@@ -20,6 +20,7 @@ services:
      - 4380:5432
     volumes:
       - postgres_data:/usr/src/postgresql/data/
+      - /etc/localtime:/etc/localtime:ro
     environment:
       - POSTGRES_USER=core_mail_admin
       - POSTGRES_PASSWORD=pbcadmin#123!
@@ -33,6 +34,7 @@ services:
       #- $PWD/.konzeptionpw:/usr/src/app/.konzeptionpw:ro
       - static_volume:/usr/src/app/staticfiles
       - media_volume:/usr/src/app/media_cdn
+      - /etc/localtime:/etc/localtime:ro
 
     env_file:
       - ./.env.prod

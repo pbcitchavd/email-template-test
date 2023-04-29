@@ -66,8 +66,9 @@ end of Nesting
 Inheritance
 */
 /** model von messages */
+@import "sections/project.css";
 .warning, .error, .success {
-  font-family: "Graphik-Light";
+  font-family: "Graphik-Light", sans-serif;
   font-size: 1.6rem;
   border: 1px solid #8B97A0;
   padding: 20px;
@@ -535,7 +536,7 @@ template {
   }
 }
 body {
-  font-family: "Graphik-Regular", sans-serif;
+  font-family: "Graphik-Regular", sans-serif, sans-serif;
   font-size: 1.6rem;
   line-height: 1.5;
   color: rgba(173, 181, 189, 0.75) !important;
@@ -551,7 +552,7 @@ html {
 }
 
 h1, h2, h3, h4 {
-  font-family: "Graphik-Medium";
+  font-family: "Graphik-Medium", sans-serif;
 }
 
 h1 {
@@ -581,7 +582,7 @@ ul {
 
 .subtitle {
   font-size: 1.7rem;
-  font-family: "Graphik-Medium";
+  font-family: "Graphik-Medium", sans-serif;
   margin: 0.67rem 0;
 }
 
@@ -623,15 +624,15 @@ ul {
   }
 }
 .font-medium {
-  font-family: "Graphik-Medium" !important;
+  font-family: "Graphik-Medium", sans-serif !important;
 }
 
 .font-regular {
-  font-family: "Graphik-Regular" !important;
+  font-family: "Graphik-Regular", sans-serif !important;
 }
 
 .font-light {
-  font-family: "Graphik-Light" !important;
+  font-family: "Graphik-Light", sans-serif !important;
 }
 
 .txt-regular {
@@ -887,7 +888,7 @@ ul {
 }
 
 .navbar-sm .nav-sm-menu-item, .nav-md-menu-item {
-  font-family: "Graphik-Medium";
+  font-family: "Graphik-Medium", sans-serif;
   list-style: none;
 }
 
@@ -1126,7 +1127,7 @@ END OF ACCORDION
 end of btn
  */
 ._btn, .secondary_btn, .primary_btn {
-  font-family: "Graphik-Medium";
+  font-family: "Graphik-Medium", sans-serif;
   font-size: 1.4rem;
   border-radius: 30px;
   padding: 0.4rem 2rem 0.4rem;
@@ -1394,45 +1395,6 @@ CONTACT
 /*-----------------------
 END OF CONTACT
 -----------------------*/
-.project__content {
-  font-family: "Graphik-Light";
-  transition: height 0.5s ease;
-}
-
-.open {
-  opacity: 0.3;
-  transition-delay: 0.5ms;
-  transition: opacity 0.5s ease-in-out, visibility 0.7s ease-in-out, height 0.5s ease-in-out;
-  opacity: 1;
-}
-
-.project__more {
-  color: #707070;
-  font-size: 1.4rem;
-}
-
-#project__page {
-  overflow-y: auto;
-}
-
-.project__img {
-  margin-top: 2.67rem;
-  object-fit: contain;
-  width: 100%;
-}
-
-.project__icon-wrapper {
-  display: flex;
-  justify-content: right;
-  border-bottom: var(--pbc-blue) 1px solid;
-  width: 100%;
-}
-
-.project__description {
-  padding-right: var(--percent-side-desktop);
-  order: 1;
-}
-
 header {
   background-color: #212529;
 }
