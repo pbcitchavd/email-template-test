@@ -1,5 +1,6 @@
 import time
-from datetime import datetime
+# from datetime import datetime
+from django.utils import timezone
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
 from django.contrib.sites.shortcuts import get_current_site
@@ -31,7 +32,7 @@ def index(request):
 @login_required
 def employees(request):
 
-    print(f" [datetime: {datetime.now()} ] ")
+    print(f" [datetime: {timezone.now()} ] ")
     users = User.objects.all().order_by('username').filter(user_offline=False)
     for user in users:
         create_email_template(request, user)
@@ -106,7 +107,7 @@ def create_email_template(request, employee):
         })
 
         new_user = UserMailTemplate(username=employee, email_template=email_template)
-        new_user.created_at = datetime.now()
+        new_user.created_at = timezone.now()
         new_user.save()
 
 
@@ -176,7 +177,7 @@ def send_email_to_all(request):
                 # mail.send()
 
                 user.is_active = True
-                user.email_sent_at = datetime.now()
+                user.email_sent_at = timezone.now()
                 user.save()
 
             except BadHeaderError:
@@ -217,11 +218,11 @@ def send_email_to_user(request, employee_id):
                 mail.content_subtype = "html"
 
                 #  todo: send the mail
-                mail.send()
+                # mail.send()
 
                 # save email is sent
                 user_template.is_active = True
-                user_template.email_sent_at = datetime.now()
+                user_template.email_sent_at = timezone.now()
                 user_template.save()
 
             except BadHeaderError:
@@ -252,7 +253,7 @@ def activate_user(request, uidb64, token):
 
     if user and generate_token.check_token(user, token):
         user.is_active = True
-        user.open_email = datetime.now()
+        user.open_email = timezone.now()
         user.save()
 
         # send mail Email verified, you can now login
