@@ -82,7 +82,6 @@ def show_template_from_db(request,  employee_id):
         return HttpResponse(f"{user.email_template}")
 
 
-
 def test_email_template(request, employee):
 
     current_site = get_current_site(request)
