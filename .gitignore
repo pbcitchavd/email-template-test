@@ -2,3 +2,6 @@
 beUser.csv
 db.sqlite3
 staticfiles
+.env.dev
+src
+core_phishing/alternantive_settings

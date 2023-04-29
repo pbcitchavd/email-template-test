@@ -10,7 +10,7 @@ from app_phishing.models import User
 
 
 def main():
-    with open("beUser.csv", encoding="ISO-8859-1") as file:
+    with open("src/beUser.csv", encoding="ISO-8859-1") as file:
         rows = csv.DictReader(file)
 
         for row in rows:
