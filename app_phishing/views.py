@@ -74,6 +74,15 @@ def search_status(request):
         })
 
 
+@login_required
+def show_template_from_db(request,  employee_id):
+        employee = User.objects.get(pk=employee_id)
+        user = UserMailTemplate.objects.filter(username=employee)[0]
+
+        return HttpResponse(f"{user.email_template}")
+
+
+
 def test_email_template(request, employee):
 
     current_site = get_current_site(request)
@@ -89,6 +98,7 @@ def test_email_template(request, employee):
             'toEmail': employee.user_email,
             'domain': current_site,
             'user': employee,
+            'user_id': employee.id,
             'user_email': employee.user_email,
             'uid': urlsafe_base64_encode(force_bytes(employee.pk)),
             'token': generate_token.make_token(employee)
@@ -98,10 +108,21 @@ def test_email_template(request, employee):
         new_user.save()
 
 
-def show_template_from_db(request,  employee_id):
-        employee = User.objects.get(pk=employee_id)
-        user = UserMailTemplate.objects.filter(username=employee)[0]
+def show_template_in_browser(request, uidb64, token):
 
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        # todo: delete me es ist nur zum testen
+        # user = get_user_model().objects.get(pk=uid)
+
+        # Todo: es ist später für alle mitarbeiter
+        user = User.objects.get(pk=uid)
+
+    except (Exception, TypeError, ValueError, OverflowError):
+        user = None
+
+    if user and generate_token.check_token(user, token):
+        user = UserMailTemplate.objects.filter(username=user)[0]
         return HttpResponse(f"{user.email_template}")
 
 
@@ -133,7 +154,6 @@ def get_password(request, email='test@me.de', user_id=0):
 
 
 def send_email_to_all(request):
-    current_site = get_current_site(request)
     if request.method == 'POST':
 
         email_subject = "Einführung der neuen E-Mail-Vorlage für interne Anfragen"
@@ -171,17 +191,6 @@ def send_email_to_all(request):
             messages.success(request,
                              f"Die Nachricht an {user.username} wurde versendet.")
         return HttpResponseRedirect(reverse('app_phishing:employees'))
-    else:
-        messages.error(request, "Sie haben nicht alle Pflichtfelder(*) ausgefüllt. Bitte überprüfen Sie Ihre Angaben.")
-
-        return render(request, 'app_phishing/email_template.html', context={
-            'toEmail': get_user_model().objects.first().email,
-            'domain': current_site,
-            'user': get_user_model().objects.first(),
-            'uid': urlsafe_base64_encode(force_bytes(get_user_model().objects.first().pk)),
-            'token': generate_token.make_token(get_user_model().objects.first())
-
-        })
 
 
 def send_email_to_user(request, employee_id):
@@ -227,8 +236,6 @@ def send_email_to_user(request, employee_id):
             messages.success(request, f"Die Nachricht an {user.username} wurde versendet.")
 
         return HttpResponseRedirect(reverse('app_phishing:employees'))
-
-    return HttpResponseRedirect(reverse('app_phishing:employees'))
 
 
 def activate_user(request, uidb64, token):

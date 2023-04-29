@@ -16,6 +16,7 @@ urlpatterns = [
     path('activate/<uidb64>/<token>/', views.activate_user, name="activate"),
     path('search/', views.search_status, name="search"),
     path('query/', views.query_employees, name="query"),
+    path('show_email/<uidb64>/<token>/', views.show_template_in_browser, name="browser_template"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
