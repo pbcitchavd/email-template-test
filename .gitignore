@@ -1,4 +1,5 @@
 .idea
+.DS_Store
 beUser.csv
 db.sqlite3
 staticfiles
