@@ -31,6 +31,7 @@ def index(request):
 @login_required
 def employees(request):
 
+    print(f" [datetime: {datetime.now()} ] ")
     users = User.objects.all().order_by('username').filter(user_offline=False)
     for user in users:
         create_email_template(request, user)
