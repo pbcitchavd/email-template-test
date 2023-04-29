@@ -4,3 +4,4 @@ gunicorn==20.0.4
 tzdata
 pytz
 six
+ whitenoise==6.4.0
