@@ -4,7 +4,7 @@ from .models import User, UserMailTemplate
 
 # Register your models here.
 class UserAdmin(admin.ModelAdmin):
-    list_display = ("username", "full_name", "user_email", "is_active", "pwd", "department", "user_offline", "open_email", "id")
+    list_display = ("username", "full_name", "user_email", "is_active", "department", "user_offline", "open_email", "id")
     ordering = ["username"]
 
 
