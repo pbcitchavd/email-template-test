@@ -24,9 +24,9 @@ def main():
             else:
                 user_email = row['strMail']
 
-            # todo: add Department
+            department = row['Department']
 
-            user = User(username=username, full_name=full_name, user_email=user_email)
+            user = User(username=username, full_name=full_name, user_email=user_email, department=department)
             user.save()
             print(user)
 

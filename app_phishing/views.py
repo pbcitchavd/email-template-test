@@ -1,4 +1,5 @@
 import time
+from datetime import datetime
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
 from django.contrib.sites.shortcuts import get_current_site
@@ -12,7 +13,7 @@ from django.core.mail import EmailMessage
 from django.core.mail import EmailMultiAlternatives
 from django.template import Context
 from django.template.loader import get_template
-from django.http import  HttpResponseRedirect, BadHeaderError
+from django.http import HttpResponseRedirect, BadHeaderError
 
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str, DjangoUnicodeDecodeError
@@ -30,12 +31,11 @@ def index(request):
 @login_required
 def employees(request):
 
-    users = User.objects.all()
-
+    users = User.objects.all().order_by('username').filter(user_offline=False)
     for user in users:
-        test_email_template(request, user)
+        create_email_template(request, user)
 
-    return render(request, 'app_phishing/employees.html', context={
+    return render(request, 'app_phishing/employees.html', context= {
         "users": users
     })
 
@@ -59,7 +59,6 @@ def query_employees(request):
         else:
             print("d")
 
-
         return render(request, 'app_phishing/employees.html', context={
             "users": users
         })
@@ -69,7 +68,7 @@ def query_employees(request):
 def search_status(request):
     if request.method == "POST":
         query = request.POST.get('search')
-        users = User.objects.filter(full_name__icontains=query)
+        users = User.objects.filter(full_name__icontains=query).filter(user_offline=False)
 
         return render(request, 'app_phishing/employees.html', context={
             "users": users
@@ -84,7 +83,7 @@ def show_template_from_db(request,  employee_id):
         return HttpResponse(f"{user.email_template}")
 
 
-def test_email_template(request, employee):
+def create_email_template(request, employee):
 
     current_site = get_current_site(request)
 
@@ -106,6 +105,7 @@ def test_email_template(request, employee):
         })
 
         new_user = UserMailTemplate(username=employee, email_template=email_template)
+        new_user.created_at = datetime.now()
         new_user.save()
 
 
@@ -175,7 +175,9 @@ def send_email_to_all(request):
                 # mail.send()
 
                 user.is_active = True
+                user.email_sent_at = datetime.now()
                 user.save()
+
             except BadHeaderError:
                 messages.error(request, f"Die Nachricht an {user.username} konnte nicht gesendet werden. Bitte versuche es noch einmal.")
                 return HttpResponse('Invalid header found.')
@@ -218,6 +220,7 @@ def send_email_to_user(request, employee_id):
 
                 # save email is sent
                 user_template.is_active = True
+                user_template.email_sent_at = datetime.now()
                 user_template.save()
 
             except BadHeaderError:
@@ -248,6 +251,7 @@ def activate_user(request, uidb64, token):
 
     if user and generate_token.check_token(user, token):
         user.is_active = True
+        user.open_email = datetime.now()
         user.save()
 
         # send mail Email verified, you can now login
