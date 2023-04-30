@@ -9,8 +9,9 @@ class UserAdmin(admin.ModelAdmin):
 
 
 class UserMailTemplateAdmin(admin.ModelAdmin):
-    list_display = ("username", "password", "user_email", "is_active", "email_sent_at", "created_at", )
+    list_display = ("username", "user_email", "is_active", "email_sent_at", "created_at", )
     ordering = ["username"]
+
 
 admin.site.register(User, UserAdmin)
 admin.site.register(UserMailTemplate, UserMailTemplateAdmin)

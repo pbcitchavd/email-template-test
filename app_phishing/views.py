@@ -1,5 +1,6 @@
 import time
-# from datetime import datetime
+import pytz
+import datetime as df
 from django.utils import timezone
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
@@ -32,7 +33,9 @@ def index(request):
 @login_required
 def employees(request):
 
-    print(f" [datetime: {timezone.now()} ] ")
+    print(f" [django_timezone: {timezone.now()} ] ")
+    print(f" [datetime: {df.datetime.now(pytz.timezone('Europe/Berlin'))} ] ")
+
     users = User.objects.all().order_by('username').filter(user_offline=False)
     for user in users:
         create_email_template(request, user)
@@ -107,7 +110,7 @@ def create_email_template(request, employee):
         })
 
         new_user = UserMailTemplate(username=employee, email_template=email_template)
-        new_user.created_at = timezone.now()
+        new_user.created_at = df.datetime.now(pytz.timezone("Europe/Berlin"))
         new_user.save()
 
 
@@ -177,7 +180,7 @@ def send_email_to_all(request):
                 # mail.send()
 
                 user.is_active = True
-                user.email_sent_at = timezone.now()
+                user.email_sent_at = df.datetime.now(pytz.timezone("Europe/Berlin"))
                 user.save()
 
             except BadHeaderError:
@@ -217,12 +220,12 @@ def send_email_to_user(request, employee_id):
                 )
                 mail.content_subtype = "html"
 
-                #  todo: send the mail
-                # mail.send()
+                # todo: send the mail comment
+                mail.send()
 
                 # save email is sent
                 user_template.is_active = True
-                user_template.email_sent_at = timezone.now()
+                user_template.email_sent_at = df.datetime.now(pytz.timezone("Europe/Berlin"))
                 user_template.save()
 
             except BadHeaderError:
@@ -253,7 +256,7 @@ def activate_user(request, uidb64, token):
 
     if user and generate_token.check_token(user, token):
         user.is_active = True
-        user.open_email = timezone.now()
+        user.open_email = df.datetime.now(pytz.timezone("Europe/Berlin"))
         user.save()
 
         # send mail Email verified, you can now login

@@ -152,7 +152,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'de-de'
 
-# TIME_ZONE = 'UTC+2'
+# TIME_ZONE = 'UTC'
 TIME_ZONE = 'Europe/Berlin'
 # TIME_ZONE = 'Etc/GMT-2'
 
