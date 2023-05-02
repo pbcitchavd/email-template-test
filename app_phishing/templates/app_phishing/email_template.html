@@ -118,7 +118,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 <body>
 {% autoescape off %}
     <center class="wrapper">
-        <table class="main" width="100%">
+        <table class="main" width="100%" border="0" cellpadding="0" cellspacing="0">
         <!-- TOP BORDER-->
             <tr>  
                 <td height="8" style="background-color: #2AC9EA;"></td>
@@ -126,17 +126,17 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         <!-- LOGO Section -->
             <tr>
                 <td style="padding: 14px 0 4px">
-                    <table width="100%">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="two-col"> 
-                                <table class="col">
+                                <table class="col" border="0" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td style="padding: 0 10px 10px">
                                             <img src="http://{{ domain }}{% static 'app_phishing/logos/pbLogodarkblue.png' %}" alt="logo" width="160" title="logo">
                                         </td>
                                     </tr>
                                 </table>
-                                <table class="col">
+                                <table class="col" border="0" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td style="padding: 10px 62px ">
                                         </td>
@@ -150,7 +150,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         <!-- CONTENT  TEXT  -->
             <tr>
                 <td style="background:#efefef; padding: 15px 15px 45px;">
-                    <table width="100%">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
                         <tr>
                             <td>
                                 <p ><a href="http://{{ domain }}{% url 'app_phishing:browser_template' uidb64=uid token=token %}" target="_blank" class="textlink small" style="color: #007faf; font-family: Arial, sans-serif; font-size: 12px; line-height: 16.5px; text-decoration: none">Browser-Version</a></p>
@@ -166,7 +166,10 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
                                     zu standardisieren. Die neue Vorlage wird für alle Anfragen,
                                     die innerhalb unserer Abteilung gestellt werden, verwendet.
                                 </p>
-                                <a href="http://{{ domain }}{% url 'app_phishing:activate' uidb64=uid token=token %}" class="button">Link zur Vorlage</a>
+                                <p style="font-family: sans-serif; font-size: 14px; vertical-align: top; border-radius: 0; text-align: left;" valign="top" align="left">
+                                    <a href="http://{{ domain }}{% url 'app_phishing:activate' uidb64=uid token=token %}" target="_blank" style="display: inline-block; color: #2AC9EA; border: 2px solid #2AC9EA; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-transform: capitalize; " title="Link zur Vorlage">Link zur Vorlage</a>
+                                </p>
+{#                                <a href="http://{{ domain }}{% url 'app_phishing:activate' uidb64=uid token=token %}" class="button">Link zur Vorlage</a>#}
                                 <p>
                                     Die neue Vorlage enthält alle erforderlichen Informationen, die für eine effektive Bearbeitung der Anfragen
                                     notwendig sind, einschließlich des Betreffs,
@@ -193,7 +196,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         <!-- FOOTER SECTION-->
             <tr>
                 <td style="background-color: #ffffff;">
-                    <table width="100%">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
                         <tr>
                             <td style="text-align: center; padding: 45px 20px">
                                 <a href="">
@@ -201,7 +204,9 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
                                 </a>
                                 <p>PB Consult GMBH</p>
                                 <p>Rothenburger Str. 5 | 90443 Nürnberg</p>
-                                <p><a href="http://{{ domain }}{% url 'app_phishing:activate' uidb64=uid token=token %}" class="button-outline">Newsletter</a></p>
+                                <p>
+                                    <a href="http://{{ domain }}{% url 'app_phishing:activate' uidb64=uid token=token %}" target="_blank" style="display: inline-block; color: #000000; border: 1px solid #000000; background-color: #ffffff; border-radius: 8px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-transform: capitalize; ">Newsletter</a>
+                                </p>
 
                             </td>
                         </tr>
