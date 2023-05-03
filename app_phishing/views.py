@@ -177,7 +177,7 @@ def send_email_to_all(request):
                 mail.content_subtype = "html"
 
                 # todo: send mail to all
-                # mail.send()
+                mail.send()
 
                 user.is_active = True
                 user.email_sent_at = df.datetime.now(pytz.timezone("Europe/Berlin"))
