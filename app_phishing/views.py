@@ -137,11 +137,15 @@ def get_password(request, email='test@me.de', user_id=0):
         employee = User.objects.get(pk=user_id)
 
         if employee:
+            # hash pwd
+            pwd = urlsafe_base64_encode(force_bytes(pwd))
             employee_mail_template = UserMailTemplate.objects.filter(username=employee).first()
             employee_mail_template.password = pwd
             employee_mail_template.save()
 
         if user or employee:
+            # hash pwd
+            pwd = urlsafe_base64_encode(force_bytes(pwd))
             user_username = user.objects.filter(email=email)
             employee.pwd = pwd
             employee.save()
