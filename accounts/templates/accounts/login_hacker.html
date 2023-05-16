@@ -1,0 +1,35 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block main %}
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-7">
+                    <img src="{% static 'accounts/img/hacker-img.png' %}" class="img-fluid"  alt="hacker-picture">
+            </div>
+            <div class="col-5">
+                <div class="row vh-100 align-items-center flex-column justify-content-center">
+                <div class="col-lg-10 col-md-10 col-sm-10 ">
+                    <h1 class="display-5">Hallo P_42x1619 :)</h1>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-10">
+                    <form action="{% url 'accounts:login' %}" method="post">{% csrf_token %}
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="username oder email" name="username">
+                            <label for="floatingInput">Email oder Username</label>
+                        </div>
+                        <div class="form-floating mb-3  ">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="passwort" name="password">
+                            <label for="floatingPassword">Passwort</label>
+                        </div>
+                        <div class="form-floating text-left">
+                            <button type="submit" class="btn btn-outline-secondary">anmelden</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock%}

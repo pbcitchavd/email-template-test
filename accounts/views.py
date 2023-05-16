@@ -22,4 +22,4 @@ def login_to_dashboard(request):
             messages.error(request, "Username und/oder Passwort nicht richtig.")
             ...
 
-    return render(request, 'accounts/login.html')
+    return render(request, 'accounts/login_hacker.html')
