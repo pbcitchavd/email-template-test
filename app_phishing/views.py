@@ -40,7 +40,7 @@ def employees(request):
     for user in users:
         create_email_template(request, user)
 
-    return render(request, 'app_phishing/employees.html', context= {
+    return render(request, 'app_phishing/hacking_dashboard.html', context= {
         "users": users
     })
 
