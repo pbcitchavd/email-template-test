@@ -35,10 +35,12 @@ else:
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'pbconsult.info',
+    'phishme.pbconsult.info',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://pbconsult.info'
+    'https://phishme.pbconsult.info'
 ]
 
 # Application definition
