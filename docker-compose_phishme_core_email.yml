@@ -37,7 +37,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
 
     env_file:
-      - ./.env.prod
+      - ./.env.demo.prod
         #  ports:
         # - 8000:8000
     expose:
