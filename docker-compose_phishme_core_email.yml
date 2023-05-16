@@ -1,0 +1,79 @@
+version: '3.7'
+
+networks:
+  backend-pbc:
+    driver: bridge
+
+  web:
+    external:
+      name: web
+
+services:
+
+  db:
+    image: postgres:14.1
+    networks:
+      - backend-pbc
+      - web
+
+    ports:
+     - 4440:5432
+    volumes:
+      - postgres_data:/usr/src/postgresql/data/
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - POSTGRES_USER=core_mail_admin
+      - POSTGRES_PASSWORD=pbcadmin#123!
+      - POSTGRES_DB=core_email_db
+
+  web:
+    build: .
+    command: gunicorn core_phishing.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app/
+      #- $PWD/.konzeptionpw:/usr/src/app/.konzeptionpw:ro
+      - static_volume:/usr/src/app/staticfiles
+      - media_volume:/usr/src/app/media_cdn
+      - /etc/localtime:/etc/localtime:ro
+
+    env_file:
+      - ./.env.prod
+        #  ports:
+        # - 8000:8000
+    expose:
+      - 8000
+    depends_on:
+      - db
+    networks:
+      - web
+      - backend-pbc
+
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=web
+
+
+  # ---  Routing ---http://pbconsult.info/
+
+      - traefik.http.routers.web-demo-core-email.entrypoints=http
+      - traefik.http.routers.web-demo-core-email.rule=Host(`phishme.pbconsult.info`) #  && Path(`/oberasbach`)"
+      #- traefik.http.middlewares.web-demo-core-email-auth.basicauth.users=konzeptionadmin:$$apr1$$/7aE1z8c$$Rnf9g9M6lkIW7H9MY3JtO0
+      - traefik.http.routers.web-demo-core-email.middlewares=https-redirect@file
+      - traefik.http.routers.web-demo-core-email-secured.entrypoints=https
+      - traefik.http.routers.web-demo-core-email-secured.rule=Host(`phishme.pbconsult.info`) # && Path(`/oberasbach`)"
+
+  # ---  App-Auth  ---
+      #- traefik.http.routers.web-demo-core-email-secured.middlewares=web-demo-core-email-auth
+
+  # --- SSL Routing ---
+
+      # - 'traefik.http.routers.my-app.service=app'
+      - traefik.http.routers.web-demo-core-email-secured.tls=true
+      - traefik.http.routers.web-demo-core-email-secured.tls.certresolver=le
+
+      # - 'traefik.http.services.app.loadbalancer.server.port=8000'
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:

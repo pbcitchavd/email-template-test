@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-if os.environ.get('ENV') == "PROD":
+if os.environ.get('ENV') == "PROD" or os.environ.get('ENV') == "DEMOPROD":
     SECRET_KEY = os.environ.get("SECRET_KEY")
     DEBUG = int(os.environ.get('DEBUG', default=0))
 
@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    
+
     'app_phishing',
     'accounts',
 
@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'core_phishing.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-if os.environ.get("ENV") == "PROD":
+if os.environ.get("ENV") == "PROD" or os.environ.get("ENV") == "DEMOPROD":
     print("remote prod")
     DATABASES = {
         'default': {
@@ -121,9 +121,13 @@ elif os.environ.get("ENV") == "DEV":
 else:
     print("local")
     DATABASES = {
-        'default': {
+        'm_default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
+        },
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db_demo.sqlite3',
         }
     }
 

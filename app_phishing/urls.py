@@ -2,6 +2,7 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
+
 from . import views
 
 app_name = "app_phishing"
@@ -16,6 +17,7 @@ urlpatterns = [
     path('activate/<uidb64>/<token>/', views.activate_user, name="activate"),
     path('search/', views.search_status, name="search"),
     path('query/', views.query_employees, name="query"),
+    path('socketio/<str:query>', views.socker_io, name="socker_io"),
     path('show_email/<uidb64>/<token>/', views.show_template_in_browser, name="browser_template"),
 ]
 

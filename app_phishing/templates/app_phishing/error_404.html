@@ -1,0 +1,22 @@
+{% extends 'app_phishing/base.html' %}
+
+{% load static %}
+{% block header %}
+
+    <div class="row">
+        <div class="col-8 text-center m-5">
+            <h2 class="display-1">404</h2>
+            <h2 class="display-3">Page not found</h2>
+        </div>
+    </div>
+
+
+{% endblock %}
+{% block main %}
+    <div class="row">
+        <div class="col-8 text-center m-5 p-5">
+            <img src="{% static 'app_phishing/img/page_not_found_house_bg_whtie.png' %}" width="800">
+        </div>
+    </div>
+
+{% endblock %}

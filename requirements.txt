@@ -8,3 +8,5 @@ whitenoise==6.4.0
 django-dotenv
 python-dotenv~=1.0.0
 django-environ
+python-socketio~=5.8.0
+python-engineio~=4.4.1

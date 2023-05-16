@@ -1,0 +1,26 @@
+{% extends 'app_phishing/base.html' %}
+{% load static %}
+
+{% block header %}
+    <div class="container" style="min-height: 100%">
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %} role="alert">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <form method="post" action="{% url 'app_phishing:send_mass_mail' %}">{% csrf_token %}
+                    <button class="btn btn-outline-warning " type="submit" href="{% url 'app_phishing:send_mass_mail' %}">Send Mass Mail</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
