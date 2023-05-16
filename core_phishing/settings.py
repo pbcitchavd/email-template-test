@@ -39,7 +39,7 @@ ALLOWED_HOSTS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://pbconsult.info'
+    'https://pbconsult.info',
     'https://phishme.pbconsult.info'
 ]
 
